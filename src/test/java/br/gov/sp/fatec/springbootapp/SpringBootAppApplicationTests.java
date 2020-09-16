@@ -2,6 +2,9 @@ package br.gov.sp.fatec.springbootapp;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.HashSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -13,8 +16,8 @@ import br.gov.sp.fatec.springbootapp.repository.AutorizacaoRepository;
 import br.gov.sp.fatec.springbootapp.repository.UsuarioRepository;
 
 @SpringBootTest
-@Transactional
-@Rollback
+//@Transactional
+//@Rollback
 class SpringBootAppApplicationTests {
 
     @Autowired    
@@ -32,8 +35,13 @@ class SpringBootAppApplicationTests {
         Usuario usuario = new Usuario();
         usuario.setNome("Usuario");
         usuario.setSenha("SenhaMuit0");
+        usuario.setAutorizacoes(new HashSet<Autorizacao>());
+        Autorizacao aut = new Autorizacao();
+        aut.setNome("ROLE_USUARIO");
+        autRepo.save(aut);
+        usuario.getAutorizacoes().add(aut);
         usuarioRepo.save(usuario);
-        assertNotNull(usuario.getId());
+        assertNotNull(usuario.getAutorizacoes().iterator().next().getId());
     }  
 
     @Test
