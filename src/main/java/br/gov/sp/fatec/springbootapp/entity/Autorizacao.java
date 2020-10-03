@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.springbootapp.controller.View;
 
 @Entity
 @Table(name = "aut_autorizacao")
@@ -22,6 +25,7 @@ public class Autorizacao {
     @Column(name = "aut_id")
     private Long id;
 
+    @JsonView(View.UsuarioResumo.class) 
     @Column(name = "aut_nome")
     private String nome;
 
