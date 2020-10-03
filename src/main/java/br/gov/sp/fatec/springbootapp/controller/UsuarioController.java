@@ -26,11 +26,13 @@ public class UsuarioController {
     @Autowired
     private SegurancaService segurancaService;
 
+    @JsonView(View.UsuarioResumo.class) 
     @GetMapping(value = "/todos")
     public List<Usuario> buscarTodos(){
         return segurancaService.buscarTodosUsuarios();
     }
 
+    @JsonView(View.UsuarioCompleto.class) 
     @GetMapping(value = "/id/{id}")
     public Usuario buscarPorId(@PathVariable("id")Long id){
         return segurancaService.buscarUsuarioPorId(id);
@@ -43,11 +45,13 @@ public class UsuarioController {
 
     }
 
+    @JsonView(View.UsuarioResumo.class) 
     @PostMapping
     public Usuario cadastraNovoUsuario(@RequestBody Usuario usuario){
         return segurancaService.criarUsuario(usuario.getNome(), usuario.getSenha(), "ROLE_USUARIO");    
     }
 
+    @JsonView(View.AutorizacaoResumo.class)
     @GetMapping(value ="/autorizacao/{autorizacao}")
     public Autorizacao buscarAutorizacaoPorNome(@PathVariable("autorizacao")String nome){
         return segurancaService.buscarAutorizacaoPorNome(nome);

@@ -23,12 +23,13 @@ import br.gov.sp.fatec.springbootapp.controller.View;
 @Table(name = "usr_usuario")
 public class Usuario {
 
+    @JsonView(View.UsuarioCompleto.class) 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usr_id")
     private Long id;
 
-    @JsonView(View.UsuarioResumo.class)
+    @JsonView({View.UsuarioResumo.class, View.AutorizacaoResumo.class})
     @Column(name = "usr_nome")
     private String nome;
 
