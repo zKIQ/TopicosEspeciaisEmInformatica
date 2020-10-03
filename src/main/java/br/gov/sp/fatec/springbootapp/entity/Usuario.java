@@ -1,6 +1,6 @@
 package br.gov.sp.fatec.springbootapp.entity;
 
-import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.*;
 
 import java.util.Set;
 
