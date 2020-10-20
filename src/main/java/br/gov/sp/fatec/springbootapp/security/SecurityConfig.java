@@ -1,0 +1,17 @@
+package br.gov.sp.fatec.springbootapp.security;
+
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) //vai ter segurança, habilitado por anotação
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+    @Override
+    protected void configure(HttpSecurity http) throws Exception{
+        http.csrf().disable().httpBasic().and()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //entre uma requisição e outra nao mantenha mesma memoria
+    }
+}
