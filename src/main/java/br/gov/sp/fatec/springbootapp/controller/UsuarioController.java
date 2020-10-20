@@ -37,7 +37,7 @@ public class UsuarioController {
     }
 
     @JsonView(View.UsuarioCompleto.class) 
-    @GetMapping(value = "/id/{id}")
+    @GetMapping(value = "/{id}")
     public Usuario buscarPorId(@PathVariable("id")Long id){
         return segurancaService.buscarUsuarioPorId(id);
     }
